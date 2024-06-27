@@ -1,0 +1,49 @@
+import Habitante.*
+
+
+describe "Tests de Star Wars"{
+
+const abandono  = new Suceso(cargaEmocional = -100 ) // suceso con carga emocional negativa 	
+const arrepentimiento = new Suceso(cargaEmocional = 100) // suceso con gran carga emocional positiva 	
+
+const tito = new Habitante(inteligencia = 10, valentia = 5)
+const han = new Soldado(inteligencia = 10, valentia = 50)
+const halcon = new Arma(potencia = 100)
+const luke = new Maestro(lado=ladoLuz,tiempo = 10,sable=new Sable(energia = 10),valentia = 100, inteligencia = 10)
+const palpatine = new Maestro(lado=ladoOscuro,tiempo = 10,sable=new Sable(energia = 10),valentia = 100, inteligencia = 10)
+const anakin = new Maestro(lado=ladoLuz,tiempo = 10,sable=new Sable(energia = 250),valentia = 100, inteligencia = 10, interior = 99)
+
+test "poder de un habitante"{
+  assert.equals(15, tito.poder())
+}
+
+test "poder de un soldado"{
+  han.agarrarArma(halcon)
+  assert.equals(160, han.poder())
+}
+
+test "poder de un Jedi"{
+  assert.equals(213, luke.poder())
+}
+
+test "poder de un Sith"{
+  assert.equals(313, palpatine.poder())
+}
+
+test "testAnakinPasaAlLadoOscuro" {
+ 	anakin.vivirSuceso(abandono)
+ 	assert.equals(ladoOscuro, anakin.lado()) //arreglar y completar
+  assert.equals(0, anakin.tiempo()) //arreglar y completar
+}
+
+
+test "testVaderPasaAlLadoLuminoso" {
+ 	var darthVader 
+  anakin.vivirSuceso(abandono)
+  darthVader = anakin
+ 	darthVader.vivirSuceso(arrepentimiento)
+  assert.equals(ladoLuz, darthVader.lado()) //arreglar y completar
+ 	assert.equals(0, darthVader.tiempo()) //arreglar y completar
+}
+
+}
